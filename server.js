@@ -25,6 +25,10 @@ var articleOne =
 
 function createTemplate(data)
 {
+    var title = data.title;
+    var heading = data.heading;
+    var date = data.date;
+    var content = data.content;
     var htmlTemplate = `
     <html>
     <head>
@@ -43,21 +47,10 @@ function createTemplate(data)
             ${heading}
           </h3>
           <div>
-             August 20,2017
+              ${date}
           </div>
           <div>
-             <p>
-                 This is the content for my first article. This is the content for my first article.
-                 This is the content for my first article. This is the content for my first article. This is the content for myfirst article.
-             </p>
-             <p>
-                 This is the content for my first article. This is the content for my first article.
-                 This is the content for my first article. This is the content for my first article. This is the content for myfirst article.
-             </p>
-             <p>
-                 This is the content for my first article. This is the content for my first article.
-                 This is the content for my first article. This is the content for my first article. This is the content for myfirst article.
-             </p>
+              ${content}
           </div>
       </div>
     </body>
@@ -69,7 +62,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/article-one', function (req,res) {
-    res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
+    res.send(createTemplate(articleOne));
 });
 
 app.get('/article-two', function (req,res) {
